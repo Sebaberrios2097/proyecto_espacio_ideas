@@ -1,9 +1,68 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block body %}
 
+<!-- Inicio de carrousel -->
+
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'img/prueba5.jpg' %}" class="d-block w-100" alt="Imagen carrusel">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'img/prueba4.jpg' %}" class="d-block w-100" alt="Imagen carrusel">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'img/prueba 6.jpeg' %}" class="d-block w-100" alt="Imagen carrusel">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Fin de carrousel -->
+
+<!-- Sección de productos destacados -->
+<div class="container-fluid pt-3 pb-3">
+    <h1 class="text-center">Productos destacados</h1>
+    <!-- Card producto -->
+    <div class="container mb-5">
+        <div class="form-group">
+            <div class="row">
+                <div class="card col-md-3">
+                    <div class="card-body">
+                        <img src="{% static 'img/prueba7.jpg' %}" style="border-radius: 20px">
+                        <div class="caption mt-3 text-center">
+                            <div class="">
+                                <Span style="text-align: center;">Espacio ideas</Span>
+                                <h4>Tumbler negro</h4>
+                            </div>
+                            <div class="price mt-5">
+                                <h4>$10.990</h4>
+                            </div>
+                            <div class="mt-4">
+                                <h4>Elección de cantidad</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Fin de seción productos destacados -->
 
 
 {% endblock body %}
-  
