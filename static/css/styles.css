@@ -1,0 +1,40 @@
+
+.mybtn {
+  font-size: 1.2em;
+  margin-left: 100px;
+  color: #76aada;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  -webkit-transition: color 150ms ease-in-out;
+  transition: color 150ms ease-in-out;
+  text-decoration: none;
+  padding: 21px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.mybtn:after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background: #76aada;
+  z-index: -1;
+  -webkit-transition: width 150ms ease-in-out;
+  transition: width 150ms ease-in-out;
+}
+.mybtn:hover {
+  color: #fff;
+}
+.mybtn:hover:after {
+  width: 110%;
+}
+
+.icono-footer{
+  font-size: 2rem;
+}
