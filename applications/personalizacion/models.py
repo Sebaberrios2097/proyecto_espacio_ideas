@@ -1,10 +1,11 @@
 from django.db import models
 from applications.producto.models import Producto
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Personalizacion(models.Model):
-    user= models.ForeignKey(User, on_delete=models.CASCADE)
+    models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     img_perso = models.ImageField(upload_to='personalizacion', blank=True)

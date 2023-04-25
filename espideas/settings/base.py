@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     'applications.home',
     'applications.producto',
     'applications.personalizacion',
-    'applications.usuario'
+    'applications.usuario',
+    'applications.gestion',
 ]   
 
 MIDDLEWARE = [
@@ -60,6 +61,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'espideas.wsgi.application'
 
+AUTH_USER_MODEL = 'usuario.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
