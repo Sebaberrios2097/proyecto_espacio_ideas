@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pagina %}
+Productos
+{% endblock pagina %}
+
+
+{% block body %}
+<div class="container-fluid col-md-6 mt-3 mb-3">
+    <div class="card">
+        <div class="card-header card-header-esp" style="  background-color: #76aada; color: #fff;">
+            <h1><i class="fa-solid fa-magnifying-glass"></i> Lista de categorías</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in categorias %}
+                    <tr>
+                        <td>{{ c.nombre }}</td>
+                        <td>{{ c.descripcion }}</td>
+                        <td><a class="mybtn-primary-a" type="submit" href="{% url 'categoria_update' pk=c.id %}">Editar</a></td>
+                        <td><a class="btn btn-danger" type="submit" href="{% url 'categoria_delete' pk=c.id %}">Eliminar</button></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <a class="mybtn-primary-a" href="{% url 'categoria_create' %}"><i class="fa-solid fa-plus"></i>  Nueva categoría</a>
+        </div>
+    </div>
+</div>
+{% endblock body %}
