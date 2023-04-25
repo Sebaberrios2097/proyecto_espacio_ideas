@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'applications.home',
     'applications.producto',
     'applications.personalizacion',
+    'applications.usuario'
 ]   
 
 MIDDLEWARE = [

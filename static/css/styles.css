@@ -38,3 +38,24 @@
 .icono-footer{
   font-size: 2rem;
 }
+
+.mybtn-primary{
+  border: none;
+  width: auto;
+  height: 38px;
+  background: #76aada;
+  color: #fff;
+  border-radius: 7px;
+  
+}
+
+.mybtn-primary-a{
+  border: none;
+  width: auto;
+  height: 38px;
+  background: #76aada;
+  color: #fff;
+  border-radius: 7px;
+  padding-top: 5px;
+  text-decoration: none;
+}
