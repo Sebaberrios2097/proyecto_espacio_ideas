@@ -1,8 +1,9 @@
 
 .mybtn {
   font-size: 1.2em;
-  margin-left: 100px;
   color: #76aada;
+  margin-left: 50px;
+  margin-right: 50px;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -37,4 +38,62 @@
 
 .icono-footer{
   font-size: 2rem;
+}
+
+.mybtn-primary{
+  border: none;
+  width: auto;
+  height: 38px;
+  background: #76aada;
+  color: #fff;
+  border-radius: 7px;
+  
+}
+
+.mybtn-primary-a{
+  border: none;
+  width: auto;
+  height: 38px;
+  background: #76aada;
+  color: #fff;
+  border-radius: 7px;
+  padding-top: 5px;
+  text-decoration: none;
+}
+
+.nav-span{
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.card-header-esp{
+  background-color: #76aada;
+  color: #fff;
+}
+
+.a-card-gestion{
+  text-decoration: none;
+}
+
+.mybtn-primary-a{
+  border: none;
+  width: auto;
+  height: 38px;
+  background: #76aada;
+  color: #fff;
+  border-radius: 7px;
+  padding: inherit;
+  /* display: -webkit-inline-box; */
+  text-decoration: none;
+}
+
+.mytbody{
+  line-height: 200px;
+}
+
+.mytbody-img{
+  height: 160px;
+  border-radius: 10px;
+  width: 50%;
+  margin-left: 25%;
 }

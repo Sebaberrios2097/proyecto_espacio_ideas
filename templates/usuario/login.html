@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pagina %}
+Crear cuenta
+{% endblock pagina %}
+
+
+{% block body %}
+
+<div class="container-fluid mt-4 mb-4 justify-content-center d-flex">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3>Iniciar sesión</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group" style="padding: 20px">
+                                <div class="row mt-3">
+                                    <label for="username" class="mb-2">Nombre de usuario:</label>
+                                    <input type="text" id="username" name="username" class="form-control">
+                                </div>
+                                <div class="row mt-3">
+                                    <label for="password" class="mb-2">Contraseña:</label>
+                                    <input type="password" id="password" name="password" class="form-control">
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2 mt-2">
+                                <button class="mybtn-primary">Iniciar sesión</button>
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+                    <div class="card-footer justify-content-center text-center">
+                        <div class="text-center">
+                            <span>¿Olvidaste la contraseña?</span>
+                            <div class="d-grid gap-2 mt-2">
+                                <button class="mybtn-primary" type="button">Recuperar contraseña</button>
+                            </div>
+                        </div>
+                        <br>
+                        <span>¿No estas registrado?</span>
+                        <div class="d-grid gap-2 mt-2 mb-2">
+                            <a class="mybtn-primary-a" href="{% url 'registrar_usuario' %}">Registrarse</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

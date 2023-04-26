@@ -1,6 +1,9 @@
 from django.db import models
 
+<<<<<<< HEAD
 # Create your models here.
+=======
+>>>>>>> Seba
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=50)
@@ -19,7 +22,11 @@ class Producto(models.Model):
     precio = models.IntegerField()
     stock = models.IntegerField()
     descripcion = models.CharField(max_length=50)
+<<<<<<< HEAD
     imagen = models.ImageField(upload_to='productos', null=True, blank=True)
+=======
+    imagen = models.ImageField(upload_to='productos')
+>>>>>>> Seba
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     def __str__(self):

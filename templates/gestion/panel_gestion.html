@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pagina %}
+    Panel de gestión
+{% endblock pagina %}
+
+
+{% block body %}
+    <div class="container-fluid mt-3 mb-3">
+        <div class="card">
+            <div class="card-header card-header-esp text-center">
+                <h2>Panel de gestión</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="{% url 'productos' %}" style="text-decoration: none;">
+                                <div class="card">
+                                    <div class="card-header card-header-esp text-center"">
+                                        <h3>Productos</h3>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <span>Panel para gestionar la creación, edición y eliminación de productos</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{% url 'categorias' %}" style="text-decoration: none;">
+                                <div class="card">
+                                    <div class="card-header card-header-esp text-center"">
+                                        <h3>Categorías</h3>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <span>Agrega, edita o elimina categorías</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" style="text-decoration: none;">
+                                <div class="card">
+                                    <div class="card-header card-header-esp text-center"">
+                                        <h3>Personalizaciones</h3>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <span>Panel para visualizar todas las personalizaciones realizadas por los clientes</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+    
+    
