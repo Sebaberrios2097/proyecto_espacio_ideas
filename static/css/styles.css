@@ -83,6 +83,17 @@
   color: #fff;
   border-radius: 7px;
   padding: inherit;
-  display: -webkit-inline-box;
+  /* display: -webkit-inline-box; */
   text-decoration: none;
+}
+
+.mytbody{
+  line-height: 200px;
+}
+
+.mytbody-img{
+  height: 160px;
+  border-radius: 10px;
+  width: 50%;
+  margin-left: 25%;
 }
