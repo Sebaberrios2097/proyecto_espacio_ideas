@@ -2,47 +2,53 @@
 {% load static %}
 
 {% block pagina %}
-    Productos
+Productos
 {% endblock pagina %}
 
 
 {% block body %}
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-header card-header-esp" style="  background-color: #76aada; color: #fff;">
-                <h1><i class="fa-solid fa-magnifying-glass"></i>  Lista de productos</h1>
-            </div>
-            <div class="card-body">
-                <table class="table table-striped">
-                    <thead>
-                      <tr>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header card-header-esp" style="  background-color: #76aada; color: #fff;">
+            <h1><i class="fa-solid fa-magnifying-glass"></i> Lista de productos</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Categoría</th>
                         <th scope="col" class="text-center">Imagen</th>
-                      </tr>
-                    </thead>
-                    <tbody class="mytbody">
-                        {% for p in productos %}
-                            <tr>
-                                <td>{{ p.nombre }}</td>
-                                <td>{{ p.precio }}</td>
-                                <td>{{ p.stock }}</td>
-                                <td>{{ p.categoria }}</td>
-                                <td><img src="http://127.0.0.1:8000/media/{{ p.imagen }}" class="mytbody-img"></td>
-                                <td><a class="mybtn-primary-a" href="{% url 'producto_update' pk=p.id %}">Editar</a></td>
-                                <td><a class="btn btn-danger" href="{% url 'producto_delete' pk=p.id %}">Eliminar registro</a></td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                  </table>
-            </div>
-            <div class="card-footer">
-                <a class="mybtn-primary-a" href="{% url 'producto_create' %}"><i class="fa-solid fa-plus"></i> Nuevo producto</a>
-            </div>
+                    </tr>
+                </thead>
+                <tbody class="mytbody">
+                    {% if productos %}
+                    {% for p in productos %}
+                    <tr>
+                        <td>{{ p.nombre }}</td>
+                        <td>{{ p.precio }}</td>
+                        <td>{{ p.stock }}</td>
+                        <td>{{ p.categoria }}</td>
+                        <td><img src="http://127.0.0.1:8000/media/{{ p.imagen }}" class="mytbody-img"></td>
+                        <td><a class="mybtn-primary-a" href="{% url 'producto_update' pk=p.id %}">Editar</a></td>
+                        <td><a class="btn btn-danger" href="{% url 'producto_delete' pk=p.id %}">Eliminar registro</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">No hay datos disponibles</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <a class="mybtn-primary-a" href="{% url 'producto_create' %}"><i class="fa-solid fa-plus"></i> Nuevo
+                producto</a>
         </div>
     </div>
+</div>
 {% endblock body %}
-    
-    

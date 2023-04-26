@@ -21,14 +21,28 @@ Categorias
                     </tr>
                 </thead>
                 <tbody>
-                    {% for c in categorias %}
-                    <tr>
-                        <td>{{ c.nombre }}</td>
-                        <td>{{ c.descripcion }}</td>
-                        <td><a class="mybtn-primary-a" type="submit" href="{% url 'categoria_update' pk=c.id %}">Editar</a></td>
-                        <td><a class="btn btn-danger" type="submit" href="{% url 'categoria_delete' pk=c.id %}">Eliminar</button></td>
-                    </tr>
-                    {% endfor %}
+                    {% if categorias %}
+                        {% for c in categorias  %}
+                        <tr>
+                            <td>
+                                {{ c.nombre }}
+                            </td>
+                            <td>
+                                {{ c.descripcion}}
+                            </td>
+                            <td>
+                                <a class="mybtn-primary-a" href="{% url 'categoria_update' pk=c.id %}">Editar</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="{% url 'categoria_delete' pk=c.id %}">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center">No hay datos disponibles</td>
+                        </tr>
+                    {% endif %} 
                 </tbody>
             </table>
         </div>
