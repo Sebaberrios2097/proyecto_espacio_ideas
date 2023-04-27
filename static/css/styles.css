@@ -75,16 +75,21 @@
   text-decoration: none;
 }
 
-.mybtn-primary-a{
-  border: none;
-  width: auto;
+.mybtn-primary-a {
+  display: inline-block;
+  box-sizing: border-box;
   height: 38px;
-  background: #76aada;
+  line-height: 38px;
+  padding: 0 16px;
+  background-color: #76aada;
   color: #fff;
+  border: none;
   border-radius: 7px;
-  padding: inherit;
-  /* display: -webkit-inline-box; */
   text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
 }
 
 .mytbody{
@@ -107,5 +112,11 @@
 
 .card {
   margin: 15px;
+}
+
+.img-previa {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 
