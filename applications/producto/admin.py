@@ -1,7 +1,26 @@
 from django.contrib import admin
 from .models import Producto, Categoria, ImagenProducto
 
-admin.site.register(Producto)
+#haz un inline para que se muestre en el mismo formulario de producto
+class ImagenProductoInline(admin.TabularInline):
+    model = ImagenProducto
+    extra = 1
+
+class ProductoAdmin(admin.ModelAdmin):
+    inlines = [ImagenProductoInline,]
+    list_display = ('nombre', 'precio', 'stock', 'categoria')
+    search_fields = ('nombre', 'categoria__nombre')
+    list_filter = ('categoria',)
+    fieldsets = (        
+        ('Información del producto', {
+            'fields': ('nombre', 'precio', 'stock', 'categoria')
+        }),
+        ('Información adicional', {
+            'fields': ('descripcion', 'img_principal')
+        }))
+
+
+admin.site.register(Producto, ProductoAdmin)
 admin.site.register(Categoria)
 admin.site.register(ImagenProducto)
 
