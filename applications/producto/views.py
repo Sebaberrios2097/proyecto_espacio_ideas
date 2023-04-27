@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView
 from .models import Producto, Categoria
 from .forms import CustomProductoCreationForm, CustomCategoriaCreationForm
 from django.urls import reverse_lazy

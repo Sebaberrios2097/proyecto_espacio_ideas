@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load format_price %}
 
 
 {% block pagina %}
-    Espacio ideas
+Espacio ideas
 {% endblock pagina %}
 
 {% block body %}
@@ -35,25 +36,26 @@
 </div>
 
 <!-- Fin de carrousel -->
-
-<!-- Sección de productos destacados -->
 <div class="container-fluid pt-3 pb-3">
-    <h1 class="text-center">Productos destacados</h1>
+    <h1 class="text-center">Productos recientes</h1>
     <hr>
     <!-- Card producto -->
     <div class="container mb-5">
         <div class="form-group">
             <div class="row">
-                <div class="card col-md-3">
+
+                {% if productos_recientes %}
+                {% for producto in productos_recientes %}
+                <div class="card col-md-2">
                     <div class="card-body">
-                        <img src="{% static 'img/prueba7.jpg' %}" style="border-radius: 20px">
+                        <img src="{{ producto.imagen.url }}" class="img-card-nuevo img-fluid">
                         <div class="caption mt-3 text-center">
                             <div class="">
-                                <Span style="text-align: center;">Espacio ideas</Span>
-                                <h4>Tumbler negro</h4>
+                                <Span style="text-align: center;">{{ producto.categoria }}</Span>
+                                <h4>{{ producto.nombre }}</h4>
                             </div>
                             <div class="price mt-5">
-                                <h4>$10.990</h4>
+                                <h4>$ {{ producto.precio|format_price }}</h4>
                             </div>
                             <div class="mt-4">
                                 <h4>Elección de cantidad</h4>
@@ -61,12 +63,52 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+                {% else %}
+                <h1 colspan="5" class="text-center">No hay datos disponibles</h1>
+                {% endif %}
 
             </div>
         </div>
     </div>
 </div>
+<!-- Sección de productos más vendidos -->
+<div class="container-fluid pt-3 pb-3">
+    <h1 class="text-center">Lo más vendido</h1>
+    <hr>
+    <!-- Card producto -->
+    <div class="container mb-5">
+        <div class="form-group">
+            <div class="row">
 
+                {% if productos_recientes %}
+                {% for producto in productos_recientes %}
+                <div class="card col-md-2">
+                    <div class="card-body">
+                        <img src="{{ producto.imagen.url }}" class="img-card-nuevo img-fluid">
+                        <div class="caption mt-3 text-center">
+                            <div class="">
+                                <Span style="text-align: center;">{{ producto.categoria }}</Span>
+                                <h4>{{ producto.nombre }}</h4>
+                            </div>
+                            <div class="price mt-5">
+                                <h4>$ {{ producto.precio|format_price }}</h4>
+                            </div>
+                            <div class="mt-4">
+                                <h4>Elección de cantidad</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <h1 colspan="5" class="text-center">No hay datos disponibles</h1>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Fin de seción productos destacados -->
 

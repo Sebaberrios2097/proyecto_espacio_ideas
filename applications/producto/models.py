@@ -18,14 +18,23 @@ class Producto(models.Model):
     precio = models.IntegerField()
     stock = models.IntegerField()
     descripcion = models.CharField(max_length=50)
-    imagen = models.ImageField(upload_to='productos')
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.nombre} | Categoria: {self.categoria}"
-    
+
     class Meta:
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
         ordering = ['nombre']
+
+
+class ImagenProducto(models.Model):
+    imagen = models.ImageField(upload_to='productos')
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='imagenes')
+    principal = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.producto.nombre} | Principal: {self.principal}"
+
 

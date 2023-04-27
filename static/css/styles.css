@@ -97,3 +97,15 @@
   width: 50%;
   margin-left: 25%;
 }
+
+.img-card-nuevo {
+  max-height: 150px; /* Ajusta este valor según tus preferencias */
+  object-fit: cover;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.card {
+  margin: 15px;
+}
+
