@@ -33,9 +33,8 @@ class Producto(models.Model):
 class ImagenProducto(models.Model):
     imagen = models.ImageField(upload_to='productos')
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='imagenes')
-    principal = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.producto.nombre} | Principal: {self.principal}"
+        return f"{self.producto.nombre} | Producto = {self.producto}"
 
 

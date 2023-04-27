@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, UpdateView
-from .models import Producto, Categoria
+from .models import Producto, Categoria, ImagenProducto
 from .forms import CustomProductoCreationForm, CustomCategoriaCreationForm
 from django.urls import reverse_lazy
 
@@ -11,6 +11,21 @@ class ProductoCreateView(CreateView):
     success_url = reverse_lazy('productos')
     context_object_name = 'producto'
     template_name = 'producto/crear_producto.html'
+
+    def form_valid(self, form):
+        # Obtenemos las imágenes del campo de entrada de archivo múltiple
+        imagenes = self.request.FILES.getlist('imagenes[]')
+
+        # Llamamos al método form_valid del padre para guardar la información del producto en la base de datos
+        response = super().form_valid(form)
+
+        # Guardamos cada imagen en el sistema de archivos y las relacionamos con el producto recién creado
+        for imagen in imagenes:
+            ImagenProducto.objects.create(imagen=imagen, producto=self.object)
+
+        # Devolvemos la respuesta
+        return response
+
 
 #Listar productos
 class ProductoListView(ListView):

@@ -14,16 +14,16 @@ Productos
         </div>
         <div class="card-body">
             <table class="table table-striped">
-                <thead>
+                <thead class="text-center">
                     <tr>
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Categoría</th>
-                        <th scope="col" class="text-center">Imagen</th>
+                        <th scope="col">Imagen principal</th>
                     </tr>
                 </thead>
-                <tbody class="mytbody">
+                <tbody class="mytbody text-center">
                     {% if productos %}
                     {% for p in productos %}
                     <tr>
@@ -31,7 +31,12 @@ Productos
                         <td>{{ p.precio }}</td>
                         <td>{{ p.stock }}</td>
                         <td>{{ p.categoria }}</td>
-                        <td><img src="http://127.0.0.1:8000/media/{{ p.imagen }}" class="mytbody-img"></td>
+                        
+                        {% if p.img_principal %}
+                        <td><img src="{{ p.img_principal.url }}" class="mytbody-img"></td>
+                        {% else %}
+                        <td class="text-center"><span>Sin imagen principal</span></td>
+                        {% endif %}
                         <td><a class="mybtn-primary-a" href="{% url 'producto_update' pk=p.id %}">Editar</a></td>
                         <td><a class="btn btn-danger" href="{% url 'producto_delete' pk=p.id %}">Eliminar registro</a>
                         </td>
