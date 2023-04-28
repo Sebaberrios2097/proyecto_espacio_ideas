@@ -36,6 +36,7 @@ Espacio ideas
 </div>
 
 <!-- Fin de carrousel -->
+<!-- Productos recientes -->
 <div class="container-fluid pt-3 pb-3">
     <h1 class="text-center">Productos recientes</h1>
     <hr>
@@ -47,13 +48,13 @@ Espacio ideas
                 {% if productos_recientes %}
                 {% for producto in productos_recientes %}
                 <div class="card col-md-3">
-                    <a href="" class="a-card-preciente">
+                    <a href="{% url 'product_detail' pk=producto.id %}" class="a-card-preciente">
                         <div class="card-body">
                             <img src="{{ producto.img_principal.url }}" class="img-card-nuevo img-fluid">
                             <div class="caption mt-3 text-center">
                                 <div class="">
                                     <Span style="text-align: center;">{{ producto.categoria }}</Span>
-                                    <h4>{{ producto.nombre }}</h4>
+                                    <h4 class="span-det-producto color-card-preciente">{{ producto.nombre }}</h4>
                                 </div>
                                 <div class="price mt-5">
                                     <h4>$ {{ producto.precio|format_price }}</h4>
@@ -89,45 +90,9 @@ Espacio ideas
     </div>
 </div>
 <hr>
+<!-- Fin productos recientes -->
+
 <!-- Sección de productos más vendidos -->
-<div class="container-fluid pt-3 pb-3">
-    <h1 class="text-center">Lo más vendido</h1>
-    <hr>
-    <!-- Card producto -->
-    <div class="container mb-5">
-        <div class="form-group">
-            <div class="row">
-
-                {% if productos_recientes %}
-                {% for producto in productos_recientes %}
-                <div class="card col-md-2">
-                    <div class="card-body">
-                        <img src="{{ producto.imagen.url }}" class="img-card-nuevo img-fluid">
-                        <div class="caption mt-3 text-center">
-                            <div class="">
-                                <Span style="text-align: center;">{{ producto.categoria }}</Span>
-                                <h4>{{ producto.nombre }}</h4>
-                            </div>
-                            <div class="price mt-5">
-                                <h4>$ {{ producto.precio|format_price }}</h4>
-                            </div>
-                            <div class="mt-4">
-                                <h4>Elección de cantidad</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-                {% else %}
-                <h1 colspan="5" class="text-center">No hay datos disponibles</h1>
-                {% endif %}
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Fin de seción productos destacados -->
 
 
 {% endblock body %}

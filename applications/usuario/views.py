@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView
 from .models import UserExtra
 from django.urls import reverse_lazy
-from .forms import UserForm
+from .forms import UserForm, UserFormEdit, UserExtraForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -38,3 +40,9 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+def perfil_view(request, id):
+    usuario = get_object_or_404(User, id=id)
+    userextra = UserExtra.objects.get(user=usuario)
+    context = {'usuario': usuario, 'userextra': userextra}
+    return render(request, 'usuario/perfil_usuario.html', context)

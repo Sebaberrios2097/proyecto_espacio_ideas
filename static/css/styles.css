@@ -1,4 +1,3 @@
-
 .mybtn {
   font-size: 1.2em;
   color: #76aada;
@@ -132,7 +131,6 @@
 
 .nom-producto{
   font-size: 2rem;
-  color: #654E92;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -143,4 +141,8 @@
 
 .color-espideas{
   color: #76aada;
+}
+
+.color-card-preciente{
+  color: #0A4D68;
 }

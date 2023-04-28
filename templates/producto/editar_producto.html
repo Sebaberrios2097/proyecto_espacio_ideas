@@ -18,7 +18,7 @@ Registrar producto
                 {% csrf_token %}
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-12 mt-3">
+                        <div class="col-md-6 mt-3">
                             <label for="nombre">Nombre:</label>
                             {{ form.nombre }}
                         </div>
@@ -29,6 +29,13 @@ Registrar producto
                         <div class="col-md-6 mt-3">
                             <label for="stock">Stock:</label>
                             {{ form.stock }}
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="personalizable">¿Es personalizable?</label>
+                            <select name="personalizable" id="personalizable" class="form-control">
+                              <option value="true">Sí</option>
+                              <option value="false" selected>No</option>
+                            </select>
                         </div>
                         <div class="col-md-12 mt-3">
                             <label for="descripcion">Descripción:</label>
@@ -65,5 +72,7 @@ Registrar producto
         </div>
     </div>
 </div>
+
+<script src="{% static 'js/ckeditor.js' %}"></script>
 
 {% endblock body %}
