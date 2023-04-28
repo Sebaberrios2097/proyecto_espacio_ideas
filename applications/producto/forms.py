@@ -5,14 +5,14 @@ class CustomProductoCreationForm(forms.ModelForm):
     class Meta:
         model = Producto
         fields = ['nombre', 'precio', 'stock', 'descripcion','categoria', 'img_principal']
-        labels = {
-            'nombre': 'Nombre',
-            'precio': 'Precio',
-            'stock': 'Stock',
-            'descripcion': 'Descripción',
-            'categoria': 'Categoría',
-            'img_principal': 'Imagen principal',
-        }
+        # labels = {
+        #     'nombre': 'Nombre',
+        #     'precio': 'Precio',
+        #     'stock': 'Stock',
+        #     'descripcion': 'Descripción',
+        #     'categoria': 'Categoría',
+        #     'img_principal': 'Imagen principal',
+        # }
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'precio': forms.NumberInput(attrs={'class': 'form-control'}),

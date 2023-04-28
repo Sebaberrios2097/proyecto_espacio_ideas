@@ -7,13 +7,14 @@ class ImagenProductoInline(admin.TabularInline):
     extra = 1
 
 class ProductoAdmin(admin.ModelAdmin):
+    exclude = ['fecha_creacion']
     inlines = [ImagenProductoInline,]
-    list_display = ('nombre', 'precio', 'stock', 'categoria')
-    search_fields = ('nombre', 'categoria__nombre')
-    list_filter = ('categoria',)
+    list_display = ('nombre', 'precio', 'stock', 'categoria', 'personalizable', 'fecha_creacion')
+    search_fields = ('nombre', 'categoria__nombre', 'fecha_creacion')
+    list_filter = ('categoria', 'personalizable', 'fecha_creacion')
     fieldsets = (        
         ('Información del producto', {
-            'fields': ('nombre', 'precio', 'stock', 'categoria')
+            'fields': ('nombre', 'precio', 'stock', 'categoria', 'personalizable')
         }),
         ('Información adicional', {
             'fields': ('descripcion', 'img_principal')

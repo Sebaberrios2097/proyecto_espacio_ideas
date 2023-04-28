@@ -1,9 +1,10 @@
 from django.db import models
-
+from ckeditor.fields import RichTextField
+from django.utils import timezone
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=50)
-    descripcion = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=150)
 
     def __str__(self):
         return self.nombre
@@ -17,9 +18,12 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=50)
     precio = models.IntegerField()
     stock = models.IntegerField()
-    descripcion = models.CharField(max_length=1000)
+    descripcion = RichTextField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    img_principal = models.ImageField(upload_to='productos', null=True, blank=True)
+    img_principal = models.ImageField(upload_to='productos', null=True, blank=True, verbose_name='Imagen principal')
+    personalizable = models.BooleanField(default=False, verbose_name='¿Es personalizable?')
+    fecha_creacion = models.DateTimeField(default=timezone.now, editable=False)
+#se agrega la fecha de creacion del producto con posibilidad de guardar una fecha de modificación
 
     def __str__(self):
         return f"{self.nombre} | Categoria: {self.categoria}"
@@ -35,6 +39,6 @@ class ImagenProducto(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='imagenes')
 
     def __str__(self):
-        return f"{self.producto.nombre} | Producto = {self.producto}"
+        return f"{self.imagen} | Producto = {self.producto.nombre}"
 
 
