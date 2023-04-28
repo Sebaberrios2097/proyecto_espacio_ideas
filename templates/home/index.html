@@ -46,22 +46,38 @@ Espacio ideas
 
                 {% if productos_recientes %}
                 {% for producto in productos_recientes %}
-                <div class="card col-md-2">
-                    <div class="card-body">
-                        <img src="{{ producto.imagen.url }}" class="img-card-nuevo img-fluid">
-                        <div class="caption mt-3 text-center">
-                            <div class="">
-                                <Span style="text-align: center;">{{ producto.categoria }}</Span>
-                                <h4>{{ producto.nombre }}</h4>
-                            </div>
-                            <div class="price mt-5">
-                                <h4>$ {{ producto.precio|format_price }}</h4>
-                            </div>
-                            <div class="mt-4">
-                                <h4>Elección de cantidad</h4>
+                <div class="card col-md-3">
+                    <a href="" class="a-card-preciente">
+                        <div class="card-body">
+                            <img src="{{ producto.img_principal.url }}" class="img-card-nuevo img-fluid">
+                            <div class="caption mt-3 text-center">
+                                <div class="">
+                                    <Span style="text-align: center;">{{ producto.categoria }}</Span>
+                                    <h4>{{ producto.nombre }}</h4>
+                                </div>
+                                <div class="price mt-5">
+                                    <h4>$ {{ producto.precio|format_price }}</h4>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="btn-group col-md-8" role="group" aria-label="Seleccionar cantidad">
+                                                <button type="button" class="btn btn-secondary btn-cantidad" id="btn-minus">-</button>
+                                                <button type="button" class="btn btn-light" id="btn-cantidad">1</button>
+                                                <button type="button" class="btn btn-secondary btn-cantidad" id="btn-plus">+</button>
+                                            </div>
+                                            <div class="col-md-4 d-grid">
+                                                <button type="button" class="mybtn-primary"><i class="fa fa-cart-shopping" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <small class="col-md-8">Máximo 10 unidades</small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 {% endfor %}
                 {% else %}

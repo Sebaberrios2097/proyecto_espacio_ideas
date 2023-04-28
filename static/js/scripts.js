@@ -53,3 +53,19 @@ function crearImagenPrevia(archivo, contenedor) {
     row.appendChild(colImg);
     contenedor.appendChild(row);
 }
+
+  // Manejador de evento de clic para el botón de menos
+  document.getElementById("btn-minus").addEventListener("click", function() {
+    let cantidad = parseInt(document.getElementById("btn-cantidad").textContent);
+    if (cantidad > 1) {
+      document.getElementById("btn-cantidad").textContent = cantidad - 1;
+    }
+  });
+
+  // Manejador de evento de clic para el botón de más
+  document.getElementById("btn-plus").addEventListener("click", function() {
+    let cantidad = parseInt(document.getElementById("btn-cantidad").textContent);
+    if (cantidad < 10) {
+      document.getElementById("btn-cantidad").textContent = cantidad + 1;
+    }
+  });

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from .models import Producto, Categoria, ImagenProducto
 from .forms import CustomProductoCreationForm, CustomCategoriaCreationForm
 from django.urls import reverse_lazy
@@ -75,3 +75,13 @@ def borrar_categoria(request, pk):
     categoria = Categoria.objects.get(id=pk)
     categoria.delete()
     return redirect('categorias')
+
+class ProductoDetailView(DetailView):
+    model = Producto
+    context_object_name = 'producto'
+    template_name = 'producto/det_producto.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['imagenes'] = ImagenProducto.objects.filter(producto=self.object)
+        return context

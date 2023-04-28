@@ -7,5 +7,5 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['productos_recientes'] = Producto.objects.all().order_by('-id')[:5]  # Cambia 5 al número de productos que desees mostrar
+        context['productos_recientes'] = Producto.objects.all().order_by('-id')[:4]  # Cambia al número de productos que desees mostrar
         return context

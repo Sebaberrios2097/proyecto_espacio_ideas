@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load format_price %}
+
+{% block pagina %}
+{{ producto.nombre }}
+{% endblock pagina %}
+
+{% block body %}
+
+<div class="container-fluid d-flex justify-content-center">
+    <div class="card col-md-10">
+      <div class="container">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 p-0">
+              <div id="carouselExampleFade" class="carousel slide carousel-fade h-100">
+                <div class="carousel-inner h-100">
+                  {% for i in imagenes %}
+                  {% if forloop.first %}
+                  <div class="carousel-item active h-100">
+                    <img src="{{ i.imagen.url }}" class="d-block w-100 h-100" alt="...">
+                  </div>
+                  {% else %}
+                  <div class="carousel-item h-100">
+                    <img src="{{ i.imagen.url }}" class="d-block w-100 h-100" alt="...">
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Siguiente</span>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group pt-3">
+                <div class="row">
+                    <div class="col-md-12 span-det-producto">
+                        <span class="color-espideas">{{ producto.categoria }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 nom-producto">
+                        <h2>{{ producto.nombre }}</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 span-det-producto">
+                        <h1 class="color-espideas">${{ producto.precio|format_price }} CLP</h1>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="color-espideas">Descripción</span>
+                        <p>{{ producto.descripcion|safe }}</p>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+{% endblock body %}
