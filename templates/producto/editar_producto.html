@@ -32,10 +32,20 @@ Registrar producto
                         </div>
                         <div class="col-md-6 mt-3">
                             <label for="personalizable">¿Es personalizable?</label>
-                            <select name="personalizable" id="personalizable" class="form-control">
-                              <option value="true">Sí</option>
-                              <option value="false" selected>No</option>
+
+                            {% if producto.personalizable == True %}
+                            <select class="form-control" name="personalizable" id="personalizable">
+                                <option value="True" selected>Si</option>
+                                <option value="False">No</option>
                             </select>
+                            {% else %}
+                            <select class="form-control" name="personalizable" id="personalizable">
+                                <option value="True">Si</option>
+                                <option value="False" selected>No</option>
+                            </select>
+
+                            {% endif %}
+
                         </div>
                         <div class="col-md-12 mt-3">
                             <label for="descripcion">Descripción:</label>
@@ -66,7 +76,7 @@ Registrar producto
                 <output id="vista-previa"></output>
 
                 <div class="d-grid gap-2 mt-2">
-                    <button class="mybtn-primary" type="submit">Registrar producto</button>
+                    <button class="mybtn-primary" type="submit">Guardar</button>
                 </div>
             </form>
         </div>

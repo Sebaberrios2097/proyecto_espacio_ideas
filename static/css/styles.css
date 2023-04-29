@@ -129,12 +129,12 @@
   color: #000;
 }
 
-.nom-producto{
+.font-roboto{
   font-size: 2rem;
   font-family: 'Roboto', sans-serif;
 }
 
-.span-det-producto{
+.font-staatliches{
   font-size: 25px;
   font-family: 'Staatliches', cursive;
 }
@@ -145,4 +145,32 @@
 
 .color-card-preciente{
   color: #0A4D68;
+}
+
+.prod-bot{
+  margin-top: 25%;
+}
+
+.btn-cantidad-up{
+  border: none;
+  background: #76aada;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+}
+
+.btn-cantidad-down{
+  border: none;
+  background: #76aada;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'applications.personalizacion',
     'applications.usuario',
     'applications.gestion',
+    'applications.pedido',
 ]   
 
 MIDDLEWARE = [

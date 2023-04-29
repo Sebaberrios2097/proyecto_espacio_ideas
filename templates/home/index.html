@@ -53,28 +53,22 @@ Espacio ideas
                             <img src="{{ producto.img_principal.url }}" class="img-card-nuevo img-fluid">
                             <div class="caption mt-3 text-center">
                                 <div class="">
-                                    <Span style="text-align: center;">{{ producto.categoria }}</Span>
-                                    <h4 class="span-det-producto color-card-preciente">{{ producto.nombre }}</h4>
+                                    <span class="text-center font-staatliches">{{ producto.categoria }}</span>
+                                    <br>
+                                    <span class="font-roboto color-card-preciente">{{ producto.nombre }}</span>
                                 </div>
-                                <div class="price mt-5">
-                                    <h4>$ {{ producto.precio|format_price }}</h4>
+                                <div class="price mt-5 font-staatliches">
+                                    <h2>$ {{ producto.precio|format_price }}</h2>
                                 </div>
-                                <div class="mt-4">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="btn-group col-md-8" role="group" aria-label="Seleccionar cantidad">
-                                                <button type="button" class="btn btn-secondary btn-cantidad" id="btn-minus">-</button>
-                                                <button type="button" class="btn btn-light" id="btn-cantidad">1</button>
-                                                <button type="button" class="btn btn-secondary btn-cantidad" id="btn-plus">+</button>
-                                            </div>
-                                            <div class="col-md-4 d-grid">
-                                                <button type="button" class="mybtn-primary"><i class="fa fa-cart-shopping" aria-hidden="true"></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <small class="col-md-8">Máximo 10 unidades</small>
-                                        </div>
-                                    </div>
+                                <div class="mt-4 font-staatliches">
+                                    {% if producto.stock == 0 %}
+                                        <h3>Producto agotado</h3>
+                                    {% elif producto.stock <= 5 %}
+                                        <h3>Quedan pocas unidades</h3>
+                                    {% else %}
+                                        <h3>Producto disponible</h3>
+                                    {% endif %}
+                                        
                                 </div>
                             </div>
                         </div>
