@@ -5,10 +5,9 @@
 Carrito de compras
 {% endblock pagina %}
 
-
 {% block body %}
 <div class="container-fluid d-flex justify-content-center">
-    <div class="card col-md-6">
+    <div class="card col-md-10">
         <div class="card-header text-center">
             <h1>Carrito</h1>
         </div>
@@ -17,6 +16,7 @@ Carrito de compras
                 <thead>
                     <tr>
                         <th>Producto</th>
+                        <th>Personalización</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
                         <th>Subtotal</th>
@@ -24,14 +24,22 @@ Carrito de compras
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                     {% if cart.cart.items %}
                     {% for key, value in cart.cart.items %}
                     <tr>
                         <td>{{ value.nombre }}</td>
                         <td>
+                            {% if value.personalizacion_id %}
+                            {{ value.nombre_personalizacion }}
+                            {% else %}
+                            Sin personalización
+                            {% endif %}
+                        </td>
+                        <td>
                             <div class="row d-flex justify-content-center">
-                                <div class="col-md-3"><a href="{% url 'cart_decrement' product_id=key %}" class="btn btn-primary">-</a>
+                                <div class="col-md-3"><a href="{% url 'cart_decrement' product_id=key %}"
+                                        class="btn btn-primary">-</a>
                                 </div>
                                 <div class="col-md-4">{{ value.cantidad }}</div>
                                 <div class="col-md-3">
@@ -48,15 +56,29 @@ Carrito de compras
                     {% endfor %}
                     {% else %}
                     <tr>
-                        <td colspan="5">El carrito esta vacío</td>
-                    {% endif %}
-                        
+                        <td colspan="6">El carrito está vacío</td>
+                        {% endif %}
+
                 </tbody>
             </table>
-            
-            <p>Total: {{ total|currency_format_with_symbol }}</p>
-            <a class="mybtn-danger" href="{% url 'cart_clear' %}">Vaciar carrito</a>
-            <a class="mybtn-primary-a" href="{% url 'home' %}">Seguir comprando</a>
+            <div class="container-fluid d-flex justify-content-center">
+                <div class="row text-center">
+                    <h1>Total</h1>
+                    <h2>{{ total|currency_format_with_symbol }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <a class="mybtn-danger" href="{% url 'cart_clear' %}">Vaciar carrito</a>
+                    <a class="mybtn-primary-a" href="{% url 'home' %}">Seguir comprando</a>
+                </div>
+                <div class="col-md-2  ">
+                    <form action="{% url 'crear_pedido' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="mybtn-primary-a">Finalizar compra</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
