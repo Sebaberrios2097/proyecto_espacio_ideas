@@ -40,7 +40,7 @@ Productos
                         <td class="text-center"><span>Sin imagen principal</span></td>
                         {% endif %}
                         <td><a class="mybtn-primary-a" href="{% url 'producto_update' pk=p.id %}">Editar</a></td>
-                        <td><a class="btn btn-danger" href="{% url 'producto_delete' pk=p.id %}">Eliminar registro</a>
+                        <td><a class="mybtn-danger" href="{% url 'producto_delete' pk=p.id %}">Eliminar</a>
                         </td>
                     </tr>
                     {% endfor %}

@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('applications.usuario.urls')),
     path('', include('applications.gestion.urls')),
     path('', include('applications.personalizacion.urls')),
+    path('', include('applications.carrito.urls')),
 ]

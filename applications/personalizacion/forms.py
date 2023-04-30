@@ -12,7 +12,7 @@ from .models import Personalizacion, ImagenPersonalizacion
 class PersonalizacionCreateForm(forms.ModelForm):
     class Meta:
         model = Personalizacion
-        fields = ['user', 'nombre', 'descripcion', 'producto']
+        fields = ['user', 'nombre', 'descripcion']
         labels = {
             'nombre': 'Nombre de la personalización',
             'descripcion': 'Descripción de la personalización',
@@ -20,7 +20,6 @@ class PersonalizacionCreateForm(forms.ModelForm):
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'resize': 'none'}),
-            'producto': forms.HiddenInput(),
             'user': forms.HiddenInput(),
         }
 

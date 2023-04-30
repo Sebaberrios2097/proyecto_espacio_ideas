@@ -91,6 +91,23 @@
   outline: none;
 }
 
+.mybtn-danger{
+  display: inline-block;
+  box-sizing: border-box;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 16px;
+  background-color: #F45050;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
 .mytbody{
   line-height: 200px;
 }
@@ -145,6 +162,7 @@
 
 .color-card-preciente{
   color: #0A4D68;
+  font-size: 1.8rem;
 }
 
 .prod-bot{

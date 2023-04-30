@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from .models import Producto, Categoria, ImagenProducto
 from .forms import CustomProductoCreationForm, CustomCategoriaCreationForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
 
 #Crate de Producto
 class ProductoCreateView(CreateView):
@@ -25,7 +26,6 @@ class ProductoCreateView(CreateView):
 
         # Devolvemos la respuesta
         return response
-
 
 #Listar productos
 class ProductoListView(ListView):
@@ -52,9 +52,16 @@ def borrar_producto(request, pk):
 class CategoriaCreateView(CreateView):
     model = Categoria
     form_class = CustomCategoriaCreationForm
-    success_url = reverse_lazy('categorias')
     context_object_name = 'categoria'
     template_name = 'producto/crear_categoria.html'
+
+    def get_success_url(self):
+        next_url = self.request.GET.get('next')
+        if next_url == 'producto_create':
+            self.request.session['next_url'] = next_url
+            return reverse('producto_create')
+        else:
+            return reverse_lazy('categorias')
 
 #Listar categorías
 class CategoriaListView(ListView):

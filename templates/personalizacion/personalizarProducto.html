@@ -26,14 +26,13 @@
                     </div>
                 </form>
             </div>
-            <div class="card-footer">
-                <h5>Advertencia</h5>
-                <span>Es posible que existan problemas en la personalización, principalmente en el diseño del mismo. A raíz de esto se pueden generar tiempos de espera mayores y un proceso de comunicación constante entre vendedor/cliente para llevar a cabo el trabajo para dar un buen producto final a este último. Te recomendamos lo siguiente:</span>
-                <ul>
-                    <li>Si es posible, sube más de una imagen para facilitar el trabajo</li>
-                    <li>Las imágenes deben ser simples. ej. una foto de flork o imágenes que sean fáciles de vectorizar</li>
-                </ul>
-            </div>
+            
+            {% if producto.aviso %}
+                <div class="card-footer">
+                    {{ producto.aviso_personalizacion|safe }}
+                </div>
+            {% endif %}
+                
         </div>
 
     </div>

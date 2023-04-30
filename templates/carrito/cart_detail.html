@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load format_price_cr %}
+
+{% block pagina %}
+Carrito de compras
+{% endblock pagina %}
+
+
+{% block body %}
+<div class="container-fluid d-flex justify-content-center">
+    <div class="card col-md-6">
+        <div class="card-header text-center">
+            <h1>Carrito</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {% if cart.cart.items %}
+                    {% for key, value in cart.cart.items %}
+                    <tr>
+                        <td>{{ value.nombre }}</td>
+                        <td>
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-3"><a href="{% url 'cart_decrement' product_id=key %}" class="btn btn-primary">-</a>
+                                </div>
+                                <div class="col-md-4">{{ value.cantidad }}</div>
+                                <div class="col-md-3">
+                                    <a href="{% url 'cart_add' product_id=key %}" class="btn btn-primary">+</a>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ value.precio|currency_format }}</td>
+                        <td>{{ value.subtotal|currency_format }}</td>
+                        <td>
+                            <a href="{% url 'cart_remove' product_id=key %}" class="btn btn-sm btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="5">El carrito esta vacío</td>
+                    {% endif %}
+                        
+                </tbody>
+            </table>
+            
+            <p>Total: {{ total|currency_format_with_symbol }}</p>
+            <a class="mybtn-danger" href="{% url 'cart_clear' %}">Vaciar carrito</a>
+            <a class="mybtn-primary-a" href="{% url 'home' %}">Seguir comprando</a>
+        </div>
+    </div>
+</div>
+{% endblock body %}

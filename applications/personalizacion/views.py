@@ -4,6 +4,7 @@ from django.views.generic import CreateView
 from .models import *
 from applications.producto.models import Producto
 from .forms import PersonalizacionCreateForm
+from django.contrib import messages
 
 class PersonalizacionCreate(CreateView):
     model = Personalizacion
@@ -25,6 +26,9 @@ class PersonalizacionCreate(CreateView):
         for imagen in imagenes:
             ImagenPersonalizacion.objects.create(imagen=imagen, personalizacion=self.object)
 
+        # Guarda el ID de la personalización en la sesión
+        self.request.session['personalizacion_id'] = self.object.id
+        messages.success(self.request, 'Personalización creada exitosamente.')  # Añade un mensaje de éxito
         return response
 
     def get_context_data(self, **kwargs):

@@ -8,8 +8,8 @@ class ImagenProductoInline(admin.TabularInline):
 
 class ProductoAdmin(admin.ModelAdmin):
     exclude = ['fecha_creacion']
-    inlines = [ImagenProductoInline,]
-    list_display = ('nombre', 'precio', 'stock', 'categoria', 'personalizable', 'fecha_creacion')
+    inlines = [ImagenProductoInline]
+    list_display = ('nombre', 'precio', 'stock', 'categoria', 'personalizable', 'fecha_creacion', 'aviso')
     search_fields = ('nombre', 'categoria__nombre', 'fecha_creacion')
     list_filter = ('categoria', 'personalizable', 'fecha_creacion')
     fieldsets = (        
@@ -17,7 +17,7 @@ class ProductoAdmin(admin.ModelAdmin):
             'fields': ('nombre', 'precio', 'stock', 'categoria', 'personalizable')
         }),
         ('Información adicional', {
-            'fields': ('descripcion', 'img_principal')
+            'fields': ('descripcion', 'img_principal','aviso' , 'aviso_personalizacion')
         }))
 
 
