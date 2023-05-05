@@ -36,18 +36,18 @@
   <div class="container-fluid" style="background: #76aada;">
     <div class="form-group">
       <div class="row">
-        <div class="col-3">
+        <div class="col-md-3">
           <div class="form-group mt-5 mybtn-primary">
           </div>
         </div>
-        <div class="col-6 text-center mt-3 mb-3">
+        <div class="col-md-6 text-center mt-3 mb-3">
           <a href="{% url 'home' %}"><img src="{% static 'img/espideas.jpg' %}"
               style="height: 120px; border-radius: 20px"></a>
         </div>
-        <div class="col-3">
-          <div class="f0rm-group mt-5">
-            <div class="row">
-              <div class="col-6 text-center" style="font-size: 1.2rem; color: #fff;">
+        <div class="col-md-3">
+          <div class="form-group mt-5">
+            <div class="row mb-3">
+              <div class="col-6 text-center d-flex justify-content-center" style="font-size: 1.2rem; color: #fff;">
                 <div>
                   <strong class="span-navba">Bienvenid@</strong>
                   <br>
@@ -58,7 +58,7 @@
                   {% endif %}
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-6 d-flex justify-content-center">
                 <a href="{% url 'cart_detail' %}" style="font-size: 1.5rem; color: #fff">
                   <i class="fa fa-cart-shopping" aria-hidden="true"></i>
                 </a>
@@ -71,23 +71,43 @@
   </div>
 
   <!-- Sección de botones -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary" style=" padding: 20px;">
-    <div class="container-fluid justify-content-center d-flex">
-      <a href="#" class="mybtn">Especiales</a>
-      <a href="#" class="mybtn">Productos</a>
-      <a href="#" class="mybtn">Personaliza</a>
-
-      {% if user.is_authenticated %}
-      <a href="{% url 'logout' %}" class="mybtn">Cerrar sesión</a>
-      {% else %}
-      <a href="{% url 'login' %}" class="mybtn">Iniciar sesión</a>
-      {% endif %}
-
-      {% if request.user.is_staff %}
-      <a href="{% url 'panel_gestion' %}" class="mybtn">Gestión</a>
-      {% endif %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navbarNav">
+        <ul class="navbar-nav mx-auto justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link mybtn" href="#">Especiales</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mybtn" href="#">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mybtn" href="#">Personaliza</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link mybtn" href="{% url 'logout' %}">Cerrar sesión</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link mybtn" href="{% url 'login' %}">Iniciar sesión</a>
+          </li>
+          {% endif %}
+          {% if request.user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link mybtn" href="{% url 'panel_gestion' %}">Gestión</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
     </div>
   </nav>
+  
+
   <!-- Fin de navbar -->
 
   <!-- Contenido de la página -->

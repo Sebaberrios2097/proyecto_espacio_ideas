@@ -12,55 +12,57 @@ Carrito de compras
             <h1>Carrito</h1>
         </div>
         <div class="card-body">
-            <table class="table table-bordered text-center">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Personalización</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Subtotal</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {% if cart.cart.items %}
-                    {% for key, value in cart.cart.items %}
-                    <tr>
-                        <td>{{ value.nombre }}</td>
-                        <td>
-                            {% if value.personalizacion_id %}
-                            {{ value.nombre_personalizacion }}
-                            {% else %}
-                            Sin personalización
+            <div class="table-responsive">
+                <table class="table table-bordered text-center col-md-12">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Personalización</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Subtotal</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+                        {% if cart.cart.items %}
+                        {% for key, value in cart.cart.items %}
+                        <tr>
+                            <td>{{ value.nombre }}</td>
+                            <td>
+                                {% if value.personalizacion_id %}
+                                {{ value.nombre_personalizacion }}
+                                {% else %}
+                                Sin personalización
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-3"><a href="{% url 'cart_decrement' product_id=key %}"
+                                            class="btn btn-primary">-</a>
+                                    </div>
+                                    <div class="col-md-4">{{ value.cantidad }}</div>
+                                    <div class="col-md-3">
+                                        <a href="{% url 'cart_add' product_id=key %}" class="btn btn-primary">+</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ value.precio|currency_format }}</td>
+                            <td>{{ value.subtotal|currency_format }}</td>
+                            <td>
+                                <a href="{% url 'cart_remove' product_id=key %}" class="btn btn-sm btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td colspan="6">El carrito está vacío</td>
                             {% endif %}
-                        </td>
-                        <td>
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-md-3"><a href="{% url 'cart_decrement' product_id=key %}"
-                                        class="btn btn-primary">-</a>
-                                </div>
-                                <div class="col-md-4">{{ value.cantidad }}</div>
-                                <div class="col-md-3">
-                                    <a href="{% url 'cart_add' product_id=key %}" class="btn btn-primary">+</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>{{ value.precio|currency_format }}</td>
-                        <td>{{ value.subtotal|currency_format }}</td>
-                        <td>
-                            <a href="{% url 'cart_remove' product_id=key %}" class="btn btn-sm btn-danger">Eliminar</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    {% else %}
-                    <tr>
-                        <td colspan="6">El carrito está vacío</td>
-                        {% endif %}
-
-                </tbody>
-            </table>
+    
+                    </tbody>
+                </table>
+            </div>
             <div class="container-fluid d-flex justify-content-center">
                 <div class="row text-center">
                     <h1>Total</h1>
@@ -73,12 +75,14 @@ Carrito de compras
                     <a class="mybtn-primary-a" href="{% url 'home' %}">Seguir comprando</a>
                 </div>
                 <div class="col-md-2  ">
-                    <form action="{% url 'crear_pedido' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="mybtn-primary-a">Finalizar compra</button>
-                    </form>
                 </div>
             </div>
+            <form action="{% url 'crear_pedido' %}" method="post">
+                {% csrf_token %}
+                <div class="d-grid mt-3">
+                    <button type="submit" class="mybtn-primary-a">Finalizar compra</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
