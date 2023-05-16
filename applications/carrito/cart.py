@@ -59,6 +59,12 @@ class Cart:
             else:
                 print("El producto no existe en el carrito")
     
+    def get_total(self):
+        total = 0
+        for item in self.cart.values():
+            total += float(item['precio']) * item['cantidad']
+        return total
+    
     def clear(self):
         self.session["cart"] = {}
         self.session.modified = True
