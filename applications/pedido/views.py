@@ -10,6 +10,13 @@ from django.http import Http404
 commerce_code_integracion = '597055555532'
 api_key = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
 mode = 'INTEGRATION'
+"""
+Tarjetas de prueba:
+VISA: 4051 8856 0044 6623 Genera transacciones aprobadas
+MASTER: 5186 0595 5959 0568 Genera transacciones rechazadas
+Rut: 11.111.111-1
+Clave: 123
+"""
 
 def crear_pedido(request):
     if request.method == 'POST':
@@ -46,17 +53,6 @@ def crear_pedido(request):
 
         return redirect(f'{url}?TBK_TOKEN={token}')
     
-# def pago_exitoso(request, pedido_id):
-#     try:
-#         pedido = Pedido.objects.get(id=pedido_id)
-#         transaction_id = pedido.transaction_id
-#     except Pedido.DoesNotExist:
-#         raise Http404("Pedido no existe")
-#     return render(request, 'pedido/pago_exitoso.html', {'pedido': pedido, 'transaction_id': transaction_id})
-
-# def pago_fallido(request):
-#     return render(request, 'pedido/pago_fallido.html')
-
 def webpay_response(request):
     if request.method == 'GET' and 'token_ws' in request.GET:
         token = request.GET.get('token_ws')
