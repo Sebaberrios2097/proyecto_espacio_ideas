@@ -80,20 +80,19 @@ Carrito de compras
             </div>
             {% if user.is_authenticated %}
             <form action="{% url 'crear_pedido' %}" method="post">
-                {% csrf_token %}
+            {% csrf_token %}
                 <div class="d-grid mt-3">
                     <button type="submit" class="mybtn-primary-a" {% if cart.cart.items|length == 0 %}disabled{% endif %}>Finalizar compra</button>
                 </div>
             </form>
             {% else %}
             <form action="{% url 'login' %}" method="post">
-                {% csrf_token %}
+            {% csrf_token %}
                 <div class="d-grid mt-3">
-                    <button type="submit" class="mybtn-primary-a" {% if cart.cart.items|length == 0 %}disabled{% endif %}>Finalizar compra</button>
+                    <button type="submit" class="mybtn-primary-a">Finalizar compra</button>
                 </div>
             </form>
             {% endif %}
-                
         </div>
     </div>
 </div>
