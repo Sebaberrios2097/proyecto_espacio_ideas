@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pagina %}
+Editar Carrusel
+{% endblock pagina %}
+
+
+{% block body %}
+
+<div class="container-fluid mt-3 mb-3 justify-content-center d-flex">
+    <div class="card col-md-8">
+        <div class="card-header text-center">
+            <h3>Editar Carrusel</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <label for="titulo">Título:</label>
+                            <input type="text" class="form-control" id="titulo" name="titulo" value="{{ carrusel.titulo }}">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="imagen">Imagen:</label>
+                            <input type="file" class="form-control" id="imagen" name="imagen">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="estado">Estado:</label>
+                            <select class="form-control" id="estado" name="estado">
+                                {% if carrusel.estado == True %}
+                                <option value="True" selected>Activo</option>
+                                <option value="False">Inactivo</option>
+                                {% else %}
+                                <option value="True" selected>Activo</option>
+                                <option value="False" selected>Inactivo</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <label for="descripcion">Encabezado (máx. 50 caractéres):</label>
+                            <textarea class="form-control" id="encabezado" name="encabezado" rows="1" style="resize: none;">{{ carrusel.encabezado }}</textarea>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <label for="descripcion">Subencabezado (máx. 350 caractéres):</label>
+                            <textarea class="form-control" id="subencabezado" name="subencabezado" rows="5" style="resize: none;">{{ carrusel.subencabezado }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 mt-2">
+                    <button class="mybtn-primary" type="submit">Actualizar Carrusel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/ckeditor.js' %}"></script>
+
+{% endblock body %}

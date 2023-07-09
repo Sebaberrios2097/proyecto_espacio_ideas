@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load format_price %}
+
+{% block pagina %}
+{{ producto.nombre }}
+{% endblock pagina %}
+
+{% block body %}
+
+<div class="container-fluid d-flex justify-content-center">
+  <div class="card col-md-10">
+    <div class="container">
+      <div class="form-group">
+        <div class="row">
+          <!-- Sección de carrusel con imagenes y vistas previas -->
+          <div class="col-md-6 p-0">
+            <div class="form-group">
+              <div class="row">
+                <div id="carouselExampleFade" class="carousel slide carousel-fade h-100">
+                  <div class="carousel-inner h-100">
+                    {% for i in imagenes %}
+                    {% if forloop.first %}
+                    <div class="carousel-item active h-100">
+                      <img src="{{ i.imagen.url }}" class="d-block w-100 h-100" alt="..." id="imagen-principal">
+                    </div>
+                    {% else %}
+                    <div class="carousel-item h-100">
+                      <img src="{{ i.imagen.url }}" class="d-block w-100 h-100" alt="..." id="imagen-principal">
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                  </button>
+                </div>
+              </div>
+              <!-- Vista de todas las imagenes del producto -->
+              <div class="row mt-3">
+                {% for i in imagenes %}
+                <div class="col-3 mt-2">
+                  <img src="{{ i.imagen.url }}" class="img-thumbnail thumbnail-img" data-src="{{ i.imagen.url }}"
+                    alt="...">
+                </div>
+                {% endfor %}
+              </div>
+              <!-- Fin -->
+            </div>
+          </div>
+          <!-- Fin de sección de carrusel -->
+          <!-- Sección de categoría, descripción, precio producto  -->
+          <div class="col-md-6">
+            <div class="container">
+              <div class="form-group pt-3">
+                <div class="row">
+                  <div class="col-md-12 font-staatliches">
+                    <span class="color-espideas">{{ producto.categoria }}</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 font-roboto color-card-preciente">
+                    <h2>{{ producto.nombre }}</h2>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 font-staatliches">
+                    <h1 class="color-espideas">${{ producto.precio|format_price }} CLP</h1>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-md-12">
+                    <strong class="color-espideas">Descripción</strong>
+                    <p>{{ producto.descripcion|safe }}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 text-center">
+                    <strong class="color-espideas">Existencias</strong>
+                    <input class="form-control text-center" type="text" value="{{ producto.stock }}"
+                      data-stock="{{ producto.stock }}" disabled>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="container">
+              <div class="form-group">
+                <div class="row">
+                  <span class="mb-2">Escoge la cantidad</span>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group mb-3">
+                      <button class="btn-cantidad-down" type="button" id="btn-minus">-</button>
+                      <input type="number" class="form-control text-center" id="btn-cantidad" name="cantidad" value="1"
+                        min="1" max="10" disabled>
+                      <button class="btn-cantidad-up" type="button" id="btn-plus">+</button>
+                    </div>
+                  </div>
+                  <div class="col-md-6 d-grid">
+                    <a href="#" data-href="{% url 'cart_add' product_id=producto.id %}" data-cantidad="1"
+                      class="mybtn-primary-a" id="add-to-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      Añadir al carrito</a>
+                  </div>
+                </div>
+                {% if producto.personalizable %}
+                <div class="row mb-3">
+                  <span class="text-center mt-1 mb-2">¿Quieres personalizar el producto?</span>
+                  <div class="d-grid">
+                    <a class="mybtn-primary-a"
+                      href="{% url 'producto_personalizar' producto_id=producto.id %}">Personalizar producto</a>
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <!-- Fin sección derecha -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/producto_script.js' %}"></script>
+
+{% endblock body %}

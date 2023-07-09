@@ -12,7 +12,9 @@ urlpatterns = [
     path('categorias/', CategoriaListView.as_view(), name='categorias'),
     path('actualizar_categoria/<pk>', CategoriaUpdateView.as_view(), name='categoria_update'),
     path('borrar_categoria/<pk>', borrar_categoria, name='categoria_delete'),
+    path('detalle_producto/<pk>', ProductoDetailView.as_view(), name='product_detail'),
+    path('productos/', ver_prod_usuarios.as_view(), name='products'),
+    path('prod_especiales/', productos_especiales, name='prod_especiales'),
     ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

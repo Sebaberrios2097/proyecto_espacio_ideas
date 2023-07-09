@@ -23,23 +23,50 @@ Crear cuenta
                                 <div class="row mt-3">
                                     <label for="username">Nombre de usuario:</label>
                                     {{ form.username }}
+                                    {% if form.username.errors %}
+                                        {% for error in form.username.errors %}
+                                        <span>{{ error }}</span>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
                                 <div class="row mt-3">
                                     <label for="email">Correo electrónico:</label>
                                     {{ form.email }}
+                                    {% if form.email.errors %}
+                                        {% for error in form.email.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
                                 <div class="row mt-3">
                                     <label for="password1">Contraseña:</label>
                                     {{ form.password1 }}
+                                    {% if form.password1.errors %}
+                                        {% for error in form.password1.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
                                 <div class="row mt-3">
                                     <label for="password2">Confirme contraseña:</label>
                                     {{ form.password2 }}
+                                    {% if form.password2.errors %}
+                                        {% for error in form.password2.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="d-grid gap-2 mt-2">
                                 <button class="mybtn-primary" type="submit">Registrarse</button>
                             </div>
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
                         </form>
                     </div>
                 </div>

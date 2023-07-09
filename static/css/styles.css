@@ -1,4 +1,3 @@
-
 .mybtn {
   font-size: 1.2em;
   color: #76aada;
@@ -75,16 +74,38 @@
   text-decoration: none;
 }
 
-.mybtn-primary-a{
-  border: none;
-  width: auto;
+.mybtn-primary-a {
+  display: inline-block;
+  box-sizing: border-box;
   height: 38px;
-  background: #76aada;
+  line-height: 38px;
+  padding: 0 16px;
+  background-color: #76aada;
   color: #fff;
+  border: none;
   border-radius: 7px;
-  padding: inherit;
-  /* display: -webkit-inline-box; */
   text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.mybtn-danger{
+  display: inline-block;
+  box-sizing: border-box;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 16px;
+  background-color: #F45050;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
 }
 
 .mytbody{
@@ -95,5 +116,196 @@
   height: 160px;
   border-radius: 10px;
   width: 50%;
-  margin-left: 25%;
+  /* margin-left: 25%; */
 }
+
+.img-card-nuevo {
+  max-height: 150px; /* Ajusta este valor según tus preferencias */
+  object-fit: cover;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.card {
+  margin: 15px;
+}
+
+.img-previa {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.btn-cantidad{
+  border: none;
+  background: #76aada;
+}
+
+.a-card-preciente{
+  text-decoration: none;
+  color: #000;
+}
+
+.font-roboto{
+  font-size: 2rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.font-staatliches{
+  font-size: 25px;
+  font-family: 'Staatliches', cursive;
+}
+
+.color-espideas{
+  color: #76aada;
+}
+
+.color-card-preciente{
+  color: #0A4D68;
+  font-size: 1.8rem;
+}
+
+.prod-bot{
+  margin-top: 25%;
+}
+
+.btn-cantidad-up{
+  border: none;
+  background: #76aada;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+}
+
+.btn-cantidad-down{
+  border: none;
+  background: #76aada;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.mycard {
+  position: relative;
+  width: 18em;
+  height: 18em;
+  color: #2e2d31;
+  background: #131313;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.temporary_text {
+  font-weight: bold;
+  font-size: 24px;
+  padding: 6px 12px;
+  color: #f8f8f8;
+}
+
+.mycard_title {
+  font-weight: bold;
+}
+
+.mycard_content {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+    /* edit the width to fit mycard */
+  width: 100%;
+  padding: 20px;
+  background: #f2f2f2;
+  border-top-left-radius: 20px;
+    /* edit here to change the height of the content box */
+  transform: translateY(150px);
+  transition: transform .25s;
+}
+
+.mycard_content::before {
+  content: '';
+  position: absolute;
+  top: -47px;
+  right: -45px;
+  width: 100px;
+  height: 100px;
+  transform: rotate(-175deg);
+  border-radius: 50%;
+  box-shadow: inset 48px 48px #f2f2f2;
+}
+
+.mycard_title {
+  color: #131313;
+  line-height: 15px;
+}
+
+.mycard_subtitle {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.mycard_description {
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity .5s;
+}
+
+.mycard:hover .mycard_content {
+  transform: translateY(0);
+}
+
+.mycard:hover .mycard_description {
+  opacity: 1;
+  transition-delay: .25s;
+}
+
+.img-div {
+  max-height: 19rem;
+  border-radius: 10px;
+}
+
+
+@media (min-width: 768px) {
+  .img-div {
+      max-height: 14rem;
+      border-radius: 10px;
+      margin-left: 10%;
+  }
+
+}
+
+.mybtn-primary-a-card-header{
+  display: inline-block;
+  box-sizing: border-box;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 16px;
+  background-color: #fff;
+  color: #76aada;
+  border: none;
+  border-radius: 7px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.img-carousel {
+  max-height: 50rem; /* Ajusta esta altura según tus necesidades */
+  object-fit: cover;
+}
+
+
+

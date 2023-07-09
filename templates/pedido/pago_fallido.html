@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block pagina %}
+    Pago fallido
+{% endblock pagina %}
+
+
+{% block body %}
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Problema con el pago</h4>
+        <p>Lo sentimos, hubo un problema con tu pago y tu pedido no pudo ser confirmado. Por favor, inténtalo de nuevo.</p>
+        <hr>
+        <p class="mb-0">Si el problema persiste, por favor, ponte en contacto con nuestro servicio de atención al cliente.</p>
+    </div>
+    <a class="btn btn-primary" href="{% url 'home' %}">Volver a la página de inicio</a>
+</div>
+{% endblock body %}
+    

@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     #Local apps
     'applications.home',
     'applications.producto',
@@ -29,6 +30,12 @@ INSTALLED_APPS = [
 =======
     'applications.usuario',
     'applications.gestion',
+<<<<<<< HEAD
+>>>>>>> Seba
+=======
+    'applications.pedido',
+    'applications.carrito',
+    'applications.carrusel',
 >>>>>>> Seba
 ]   
 
@@ -47,9 +54,7 @@ ROOT_URLCONF = 'espideas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'templates'
-        ],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,7 +93,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 

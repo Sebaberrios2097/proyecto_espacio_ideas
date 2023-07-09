@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pagina %}
+    Personalizar producto
+{% endblock pagina %}
+
+
+{% block body %}
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="card col-md-6">
+            <div class="card-header text-center">
+                <h2>Personalizando</h2>
+                <h3>{{ producto.nombre }}</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="form-group mt-3">
+                        <label for="imagenes">Imágenes:</label>
+                        <input type="file" name="imagenes[]" multiple class="form-control-file form-control" id="imagenes" onchange="mostrarVistaPrevia(this);">
+                    </div>
+                    <div class="d-grid mt-3">
+                        <button type="submit" class="mybtn-primary">Agregar personalización</button>
+                    </div>
+                </form>
+            </div>
+            
+            {% if producto.aviso %}
+                <div class="card-footer">
+                    {{ producto.aviso_personalizacion|safe }}
+                </div>
+            {% endif %}
+                
+        </div>
+
+    </div>
+{% endblock body %}
+    
+    
