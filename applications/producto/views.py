@@ -4,9 +4,21 @@ from .models import Producto, Categoria, ImagenProducto
 from .forms import CustomProductoCreationForm, CustomCategoriaCreationForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.views import View
 
+def es_superusuario(user):
+    return user.is_superuser
+
+class SuperuserRequiredMixin(UserPassesTestMixin):
+    login_url = '/login/'
+
+    def test_func(self):
+        return es_superusuario(self.request.user)
+    
 #Crate de Producto
-class ProductoCreateView(CreateView):
+class ProductoCreateView(SuperuserRequiredMixin, CreateView):
     model = Producto
     form_class = CustomProductoCreationForm
     success_url = reverse_lazy('productos')
@@ -28,28 +40,29 @@ class ProductoCreateView(CreateView):
         return response
 
 #Listar productos
-class ProductoListView(ListView):
+class ProductoListView(SuperuserRequiredMixin, ListView):
     model = Producto
     context_object_name = 'productos'
     template_name = 'producto/productos.html'
 
 
 #Actualizar producto
-class ProductoUpdateView(UpdateView):
+class ProductoUpdateView(SuperuserRequiredMixin, UpdateView):
     model = Producto
     form_class = CustomProductoCreationForm
     success_url = reverse_lazy('productos')
     context_object_name = 'producto'
     template_name = 'producto/editar_producto.html'
-
+    
 #Eliminar productos
+@user_passes_test(es_superusuario)
 def borrar_producto(request, pk):
     producto = Producto.objects.get(id=pk)
     producto.delete()
     return redirect('productos') #Implementar modal para consultar si se esta seguro de la eliminación del registro
 
 #Crear categoría
-class CategoriaCreateView(CreateView):
+class CategoriaCreateView(SuperuserRequiredMixin, CreateView):
     model = Categoria
     form_class = CustomCategoriaCreationForm
     context_object_name = 'categoria'
@@ -64,19 +77,20 @@ class CategoriaCreateView(CreateView):
             return reverse_lazy('categorias')
 
 #Listar categorías
-class CategoriaListView(ListView):
+class CategoriaListView(SuperuserRequiredMixin, ListView):
     model = Categoria
     context_object_name = 'categorias'
     template_name = 'producto/categorias.html'
 
 #Actualizar categoría
-class CategoriaUpdateView(UpdateView):
+class CategoriaUpdateView(SuperuserRequiredMixin, UpdateView):
     model = Categoria
     form_class = CustomCategoriaCreationForm
     success_url = reverse_lazy('categorias')
     context_object_name = 'categoria'
     template_name = 'producto/editar_categoria.html'
 
+@user_passes_test(es_superusuario)
 #Eliminar categoría
 def borrar_categoria(request, pk):
     categoria = Categoria.objects.get(id=pk)
