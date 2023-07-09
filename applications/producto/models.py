@@ -28,6 +28,7 @@ class Producto(models.Model):
     aviso = models.BooleanField(default=False, verbose_name='¿Mostrar aviso de personalización?')
     aviso_personalizacion = RichTextField(null=True, blank=True, verbose_name='Aviso de personalización')
     personalizacion = models.OneToOneField(Personalizacion, null=True, blank=True, on_delete=models.SET_NULL)
+    cantidad_vendidos = models.IntegerField(default=0)
 
 
     def __str__(self):

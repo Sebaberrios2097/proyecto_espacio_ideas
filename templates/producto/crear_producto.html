@@ -10,7 +10,7 @@ Registrar producto
 
 <div class="container-fluid mt-3 mb-3 justify-content-center d-flex">
     <div class="card col-md-8">
-        <div class="card-header text-center">
+        <div class="card-header text-center card-header-esp">
             <h3>Registrar producto</h3>
         </div>
         <div class="card-body">
@@ -30,12 +30,14 @@ Registrar producto
                             <label for="stock">Stock:</label>
                             {{ form.stock }}
                         </div>
-                        <div class="col-md-6 mt-3">
-                            <label for="personalizable">¿Es personalizable?</label>
-                            <select name="personalizable" id="personalizable" class="form-control">
-                                <option value="true">Sí</option>
-                                <option value="false" selected>No</option>
-                            </select>
+                        <div class="col-md-5 mt-3">
+                            <label for="categoria">Categoría:</label>
+                            {{ form.categoria }}
+                        </div>
+                        <div class="col-md-1 mt-3">
+                            <br>
+                            <a href="{% url 'categoria_create' %}?next=producto_create"
+                                class="mybtn-primary-a d-grid">+</a>
                         </div>
                         <div class="mt-3">
                             <div class="form-group">
@@ -47,20 +49,19 @@ Registrar producto
                                             <option value="false" selected>No</option>
                                         </select>
                                     </div>
+                                    <div class="col-md-6">
+                                        <label for="personalizable">¿Es personalizable?</label>
+                                        <select name="personalizable" id="personalizable" class="form-control">
+                                            <option value="true">Sí</option>
+                                            <option value="false" selected>No</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-3">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-5">
-                                        <label for="categoria">Categoría:</label>
-                                        {{ form.categoria }}
-                                    </div>
-                                    <div class="col-md-1">
-                                        <br>
-                                        <a href="{% url 'categoria_create' %}?next=producto_create" class="mybtn-primary-a d-grid">+</a>
-                                    </div>
                                     <div class="col-md-6">
                                         <label for="imgPrincipal">Imagen principal:</label>
                                         {{ form.img_principal }}
@@ -75,7 +76,7 @@ Registrar producto
                         <div class="col-md-12 mt-3">
                             <div class="form-group">
                                 <label for="descripcion">Descripción del producto:</label>
-                                <div class="text-center">
+                                <div class="text-center mt-2">
                                     {{ form.descripcion }}
                                 </div>
                             </div>

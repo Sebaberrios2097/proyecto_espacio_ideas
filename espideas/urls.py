@@ -26,4 +26,5 @@ urlpatterns = [
     path('', include('applications.personalizacion.urls')),
     path('', include('applications.carrito.urls')),
     path('', include('applications.pedido.urls')),
+    path('', include('applications.carrusel.urls')),
 ]

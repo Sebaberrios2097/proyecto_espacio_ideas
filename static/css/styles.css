@@ -274,8 +274,9 @@ input[type="number"]::-webkit-outer-spin-button {
 
 @media (min-width: 768px) {
   .img-div {
-      max-height: 7rem;
+      max-height: 14rem;
       border-radius: 10px;
+      margin-left: 10%;
   }
 
 }
@@ -297,9 +298,14 @@ input[type="number"]::-webkit-outer-spin-button {
   outline: none;
 }
 
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
-
-
+.img-carousel {
+  max-height: 50rem; /* Ajusta esta altura según tus necesidades */
+  object-fit: cover;
+}
 
 
 

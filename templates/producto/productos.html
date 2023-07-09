@@ -25,22 +25,27 @@ Productos
                     {% for p in productos %}
 
                     <div class="row mt-3 justify-content-center">
-                        <div class="col-12 col-md-7">
-                            <span>Id: </span>{{ p.id }}
-                            <br>
-                            <span>Nombre: </span>{{ p.nombre }}
-                            <br>
-                            <span>Precio: </span>$ {{ p.precio|format_price }} CLP
-                            <br>
-                            <span>Stock: </span>{{ p.stock }}
-                            <br>
-                            <span>Categoria: </span>{{ p.categoria }}
+                        <div class="col-12 col-md-3">
+                            {% if p.img_principal %}
+                            <img src="{{ p.img_principal.url }}" class="img-div" alt="{{ p.nombre }}">
+                            {% else %}
+                            <span>Sin imagen principal</span>
+                            {% endif %}
                         </div>
-                        <div class="col-12 col-md-2">
+                        <div class="col-12 col-md-6">
+                            <h3>{{ p.nombre }}</h3>
+                            <p>Precio: $ {{ p.precio|format_price }} CLP</p>
+                            <p>Stock: {{ p.stock }}</p>
+                            <p>Categoría: {{ p.categoria }}</p>
+                            <p>Cantidad vendida: {{ p.cantidad_vendidos }}</p>
+                        </div>
+                        <div class="col-12 col-md-3 mt-5">
                             <a class="mybtn-primary-a w-100 mt-2" href="{% url 'producto_update' pk=p.id %}">Editar</a>
-                            <a class="mybtn-danger w-100 mt-3 eliminar-btn" data-toggle="modal" data-target="#exampleModal{{ p.id }}">Eliminar</a>
+                            <a class="mybtn-danger w-100 mt-3 eliminar-btn" data-toggle="modal"
+                                data-target="#exampleModal{{ p.id }}">Eliminar</a>
                             <!-- Modal Eliminar -->
-                            <div class="modal fade" id="exampleModal{{ p.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal{{ p.id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -50,19 +55,14 @@ Productos
                                             <p>¿Estás seguro que quieres eliminar el producto "{{ p.nombre }}"?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <a href="{% url 'producto_delete' pk=p.id %}" class="mybtn-danger">Eliminar definitivamente</a>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <a href="{% url 'producto_delete' pk=p.id %}"
+                                                class="mybtn-danger">Eliminar definitivamente</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-md-2 mt-md-0 mt-3">
-                            {% if p.img_principal %}
-                            <img src="{{ p.img_principal.url }}" class="img-div">
-                            {% else %}
-                            <span>Sin imagen principal</span>
-                            {% endif %}
                         </div>
                     </div>
                     <hr>
@@ -74,4 +74,6 @@ Productos
             </div>
         </div>
     </div>
-    {% endblock body %}
+</div>
+
+{% endblock body %}

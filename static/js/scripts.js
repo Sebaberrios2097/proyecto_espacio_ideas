@@ -114,3 +114,43 @@ $(document).ready(function () {
     });
   });
 });
+
+$(document).ready(function() {
+  $('#categoriaModal form').submit(function(event) {
+    event.preventDefault(); // Evitar el envío del formulario
+
+    var formulario = $(this); // Almacenar referencia al formulario
+
+    // Realizar petición AJAX para crear la categoría
+    $.ajax({
+      url: '/ruta-de-creacion-de-categoria/', // Reemplaza con la ruta correcta de creación de categoría
+      method: 'POST',
+      data: formulario.serialize(),
+      success: function(response) {
+        // Actualizar el formulario de selección de categoría en la página principal
+        var categoriaSelect = $('#categoria');
+        categoriaSelect.append($('<option>', {
+          value: response.id,
+          text: response.nombre
+        }));
+
+        // Cerrar el modal
+        $('#categoriaModal').modal('hide');
+
+        // Limpiar el formulario del modal
+        formulario.trigger('reset');
+      },
+      error: function(error) {
+        // Manejar errores en caso de que la creación de la categoría falle
+        console.log(error);
+      }
+    });
+  });
+});
+
+var $ = JQuery.noConflict();
+function abrir_modal_crear_cat(url) {
+    $('#categoria').load(url, function () {
+        $(this).modal('show');
+    })
+}

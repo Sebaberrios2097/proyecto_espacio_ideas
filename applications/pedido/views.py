@@ -5,6 +5,7 @@ from transbank.webpay.webpay_plus.transaction import Transaction, WebpayOptions
 from django.views.generic import DetailView
 from django.urls import reverse
 from django.http import Http404, HttpResponseRedirect
+from django.db.models import F
 
 
 commerce_code_integracion = '597055555532'
@@ -64,12 +65,14 @@ def webpay_response(request):
             pedido.estado = 'PAGADO'
             pedido.save()
             
-            # Actualizar el stock de los productos comprados
+            # Actualizar el stock de los productos comprados y sumar la cantidad vendida
             for item in cart.cart.values():
                 producto = Producto.objects.get(id=item['producto_id'])
                 cantidad_comprada = item['cantidad']
                 producto.stock -= cantidad_comprada
                 producto.save()
+
+                Producto.objects.filter(id=item['producto_id']).update(cantidad_vendidos=F('cantidad_vendidos') + cantidad_comprada)
 
             cart.clear()
             return render(request, 'pedido/pago_exitoso.html', {'response': response, 'pedido': pedido})
@@ -84,8 +87,7 @@ def webpay_response(request):
     elif request.method == 'POST':
         return redirect('pago')
 
-    return redirect('cart_detail')  # Redirección por defecto (puedes ajustarla según tus necesidades)
-
+    return redirect('cart_detail')
 
 def pago_fallido(request, error):
     return render(request, 'pedido/pago_fallido.html', {'error': error})
