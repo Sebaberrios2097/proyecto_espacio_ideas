@@ -20,6 +20,7 @@ class Producto(models.Model):
     precio = models.IntegerField()
     stock = models.IntegerField()
     descripcion = RichTextField()
+    descripcion_corta= models.CharField(max_length=150, null=True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     img_principal = models.ImageField(upload_to='productos', null=True, blank=True, verbose_name='Imagen principal')
     personalizable = models.BooleanField(default=False, verbose_name='¿Es personalizable?')

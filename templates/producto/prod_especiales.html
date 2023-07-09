@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load format_price %}
+
+{% block pagina %}
+Productos Especiales
+{% endblock pagina %}
+
+{% block body %}
+    <h1 class="text-center mt-3">Sección de productos especiales</h1>
+    <hr>
+    <!-- Card producto -->
+    <div class="container-fluid mb-5">
+        <div class="form-group">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="container-fluid mb-5">
+                    <div class="form-group">
+                        <div class="row row-cols-1 row-cols-md-4 g-4">
+                            {% if productos %}
+                            {% for producto in productos %}
+                            <div class="col">
+                                <div class="card">
+                                    <a href="{% url 'product_detail' pk=producto.id %}" class="a-card-preciente">
+                                        <img src="{{ producto.img_principal.url }}" class="card-img-top" alt="Imagen del producto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ producto.nombre }}</h5>
+                                            <div class="price mt-3 font-staatliches color-card-preciente">
+                                                <h2>$ {{ producto.precio|format_price }}</h2>
+                                            </div>
+                                            <div class="mt-4 font-staatliches color-espideas">
+                                                {% if producto.stock == 0 %}
+                                                <h3>Producto agotado</h3>
+                                                {% elif producto.stock <= 5 %}
+                                                <h3>Quedan pocas unidades</h3>
+                                                {% else %}
+                                                <h3>Producto disponible</h3>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                            <div class="col text-center">
+                                <h1>No hay productos disponibles</h1>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

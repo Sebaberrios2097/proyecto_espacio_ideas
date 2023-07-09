@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Pedido, DetallePedido
+from .models import Pedido, DetallePedido, Producto
 from applications.carrito.cart import Cart
 from transbank.webpay.webpay_plus.transaction import Transaction, WebpayOptions
-
+from django.views.generic import DetailView
 from django.urls import reverse
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 
 
 commerce_code_integracion = '597055555532'
@@ -60,18 +60,41 @@ def webpay_response(request):
         cart = Cart(request)
 
         if response['status'] == 'AUTHORIZED':
-            pedido = Pedido.objects.get(webpay_token=token,)
-            transaction_id = pedido.transaction_id
+            pedido = Pedido.objects.get(webpay_token=token)
             pedido.estado = 'PAGADO'
             pedido.save()
+            
+            # Actualizar el stock de los productos comprados
+            for item in cart.cart.values():
+                producto = Producto.objects.get(id=item['producto_id'])
+                cantidad_comprada = item['cantidad']
+                producto.stock -= cantidad_comprada
+                producto.save()
+
             cart.clear()
-            print(response)
             return render(request, 'pedido/pago_exitoso.html', {'response': response, 'pedido': pedido})
         else:
             pedido = Pedido.objects.get(webpay_token=token)
             pedido.delete()
-            print(response)
-            return render(request, 'pedido/pago_fallido.html', {'response': response})
+            if response['status'] == 'ABORTED':
+                return redirect('pago_fallido', error='La transacción ha sido abortada.')
+            elif response['status'] == 'FAILED':
+                return redirect('pago_fallido', error='La transacción ha sido rechazada.')
 
     elif request.method == 'POST':
         return redirect('pago')
+
+    return redirect('cart_detail')  # Redirección por defecto (puedes ajustarla según tus necesidades)
+
+
+def pago_fallido(request, error):
+    return render(request, 'pedido/pago_fallido.html', {'error': error})
+
+def lista_pedidos(request):
+    pedidos = Pedido.objects.all().prefetch_related('detallepedido_set', 'detallepedido_set__producto', 'detallepedido_set__personalizacion')
+    return render(request, 'pedido/lista_pedidos.html', {'pedidos': pedidos})
+
+class PedidoDetailView(DetailView):
+    model = Pedido
+    template_name = 'pedido/detalle_pedido.html'
+    context_object_name = 'pedido'

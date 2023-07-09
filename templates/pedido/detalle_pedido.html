@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load format_price %}
+
+{% block pagina %}
+Detalle del Pedido
+{% endblock pagina %}
+
+{% block body %}
+
+<div class="container-fluid mt-3 mb-3 justify-content-center d-flex">
+    <div class="card col-md-4">
+        <div class="card-header text-center card-header-esp">
+            <h3>Detalle del Pedido</h3>
+        </div>
+        <div class="card-body">
+            <h5>Usuario: {{pedido.usuario}}</h5>
+            <hr>
+            <h5>Número de Pedido: {{ pedido.transaction_id }}</h5>
+            <hr>
+            <h5>Fecha: {{ pedido.fecha_creacion }}</h5>
+            <hr>
+            <h5>Estado: {{ pedido.estado }}</h5>
+            <hr>
+            <h5>Total: ${{ pedido.calcular_total|format_price }} CLP</h5>
+            <hr>
+            <h4>Productos:</h4>
+            {% for detalle in pedido.detallepedido_set.all %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ detalle.producto.nombre }}</h5>
+                    <p class="card-text">Cantidad: {{ detalle.cantidad }}</p>
+                    <p class="card-text">Precio Unitario: ${{ detalle.precio|format_price }} CLP</p>
+                    {% if detalle.personalizacion %}
+                    <p class="card-text">Personalización: {{ detalle.personalizacion.nombre }}</p>
+                    {% else %}
+                    <p class="card-text">Personalización: Sin personalización</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

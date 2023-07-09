@@ -69,9 +69,18 @@ Registrar producto
                             </div>
                         </div>
                         <div class="col-md-12 mt-3">
-                            <label for="descripcion">Descripción:</label>
-                            {{ form.descripcion }}
+                            <label for="descripcion">Descripcion corta:</label>
+                            {{ form.descripcion_corta }}
                         </div>
+                        <div class="col-md-12 mt-3">
+                            <div class="form-group">
+                                <label for="descripcion">Descripción del producto:</label>
+                                <div class="text-center">
+                                    {{ form.descripcion }}
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-12 mt-3" id="aPersonalizacionContainer">
                             <label for="avisoPersonalizacion">Aviso de personalización:</label>
                             {{ form.aviso_personalizacion }}

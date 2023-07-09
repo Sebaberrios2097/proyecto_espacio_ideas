@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from .models import *
 from applications.producto.models import Producto
 from .forms import PersonalizacionCreateForm
@@ -40,3 +40,35 @@ class PersonalizacionCreate(CreateView):
     def get_success_url(self):
         producto_id = self.kwargs['producto_id']
         return reverse_lazy('product_detail', kwargs={'pk': producto_id})
+
+def personalizacion_detail(request, pk):
+    personalizacion = get_object_or_404(Personalizacion, id=pk)
+    imagenes = ImagenPersonalizacion.objects.filter(personalizacion=personalizacion)
+    return render(request, 'personalizacion/personalizacionDetail.html', {'personalizacion': personalizacion, 'imagenes': imagenes})
+
+def personalizacion_delete(request, pk):
+    personalizacion = get_object_or_404(Personalizacion, id=pk)
+    producto_id = personalizacion.producto.id
+    personalizacion.delete()
+    messages.success(request, 'Personalización eliminada exitosamente.')  # Añade un mensaje de éxito
+    return reverse_lazy('product_detail', kwargs={'pk': producto_id})
+
+def personalizacion_edit(request, pk):
+    personalizacion = get_object_or_404(Personalizacion, id=pk)
+    imagenes = ImagenPersonalizacion.objects.filter(personalizacion=personalizacion)
+    return render(request, 'personalizacion/personalizacionEdit.html', {'personalizacion': personalizacion, 'imagenes': imagenes})
+
+def personalizacion_update(request, pk):
+    personalizacion = get_object_or_404(Personalizacion, id=pk)
+    imagenes = ImagenPersonalizacion.objects.filter(personalizacion=personalizacion)
+    imagenes.delete()
+    imagenes = request.FILES.getlist('imagenes[]')
+    for imagen in imagenes:
+        ImagenPersonalizacion.objects.create(imagen=imagen, personalizacion=personalizacion)
+    messages.success(request, 'Personalización actualizada exitosamente.')  # Añade un mensaje de éxito
+    return reverse_lazy('personalizacion_detail', kwargs={'pk': pk})
+
+class personalizacion_list(ListView):
+    model = Producto
+    context_object_name = 'productos'
+    template_name = 'personalizacion/lista_perso.html'

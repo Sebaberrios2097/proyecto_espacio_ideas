@@ -92,3 +92,13 @@ class ProductoDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['imagenes'] = ImagenProducto.objects.filter(producto=self.object)
         return context
+
+class ver_prod_usuarios(ListView):
+    model = Producto
+    context_object_name = 'productos'
+    template_name = 'producto/list_productos.html'
+
+def productos_especiales(request):
+    productos = Producto.objects.filter(categoria__nombre='Especiales')
+    context = {'productos': productos}
+    return render(request, 'producto/prod_especiales.html', context)

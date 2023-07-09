@@ -87,6 +87,52 @@ Espacio ideas
 <!-- Fin productos recientes -->
 
 <!-- Sección de productos más vendidos -->
+<div class="container-fluid pt-3 pb-3">
+    <h1 class="text-center">Productos más vendidos</h1>
+    <hr>
+    <!-- Card producto -->
+    <div class="container-fluid mb-5">
+        <div class="form-group">
+            <div class="row d-flex justify-content-center">
+                {% if productos_recientes %}
+                {% for producto in productos_recientes %}
+                <div class="card col-md-2">
+                    <a href="{% url 'product_detail' pk=producto.id %}" class="a-card-preciente">
+                        <div class="card-body">
+                            <img src="{{ producto.img_principal.url }}" class="img-card-nuevo img-fluid">
+                            <div class="caption mt-3 text-center">
+                                <div class="">
+                                    <span class="text-center font-staatliches color-espideas">{{ producto.categoria }}</span>
+                                    <br>
+                                    <span class="font-roboto color-card-preciente">{{ producto.nombre }}</span>
+                                </div>
+                                <div class="container">
+                                    <div class="price mt-5 font-staatliches color-card-preciente">
+                                        <h2>$ {{ producto.precio|format_price }}</h2>
+                                    </div>
+                                    <div class="mt-4 font-staatliches color-espideas">
+                                        {% if producto.stock == 0 %}
+                                        <h3>Producto agotado</h3>
+                                        {% elif producto.stock <= 5 %} <h3>Quedan pocas unidades</h3>
+                                            {% else %}
+                                            <h3>Producto disponible</h3>
+                                            {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+                {% else %}
+                <h1 colspan="5" class="text-center">No hay datos disponibles</h1>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
