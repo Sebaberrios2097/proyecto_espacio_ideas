@@ -303,8 +303,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .img-carousel {
-  max-height: 50rem; /* Ajusta esta altura según tus necesidades */
-  object-fit: cover;
+  max-height: 35rem; /* Ajusta esta altura según tus necesidades */
+  object-fit: fill;
 }
 
 
