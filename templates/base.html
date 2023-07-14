@@ -88,11 +88,7 @@
           <li class="nav-item">
             <a class="nav-link mybtn" href="{% url 'perso_views' %}">Personaliza</a>
           </li>
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link mybtn" href="{% url 'logout' %}">Cerrar sesión</a>
-          </li>
-          {% else %}
+          {% if user.is_authenticated == False %}
           <li class="nav-item">
             <a class="nav-link mybtn" href="{% url 'login' %}">Iniciar sesión</a>
           </li>
@@ -100,6 +96,11 @@
           {% if request.user.is_staff %}
           <li class="nav-item">
             <a class="nav-link mybtn" href="{% url 'panel_gestion' %}">Gestión</a>
+          </li>
+          {% endif %}
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link mybtn" href="{% url 'view_profile' id=user.id %}">Perfil</a>
           </li>
           {% endif %}
         </ul>

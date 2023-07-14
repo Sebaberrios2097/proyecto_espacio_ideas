@@ -6,6 +6,8 @@ from django.views.generic import DetailView
 from django.urls import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.db.models import F
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 
 
 commerce_code_integracion = '597055555532'
@@ -96,7 +98,33 @@ def lista_pedidos(request):
     pedidos = Pedido.objects.all().prefetch_related('detallepedido_set', 'detallepedido_set__producto', 'detallepedido_set__personalizacion')
     return render(request, 'pedido/lista_pedidos.html', {'pedidos': pedidos})
 
-class PedidoDetailView(DetailView):
+class PedidoAccessMixin(UserPassesTestMixin):
+    def test_func(self):
+        pedido = self.get_object()
+        
+        # Verificar si el usuario actual es el administrador
+        if self.request.user.is_superuser:
+            return True
+
+        # Verificar si el usuario actual es el autor del pedido
+        if pedido.usuario == self.request.user:
+            return True
+
+        return False
+
+
+class PedidoDetailView(PedidoAccessMixin, DetailView):
     model = Pedido
     template_name = 'pedido/detalle_pedido.html'
     context_object_name = 'pedido'
+
+    # def get_object(self, queryset=None):
+    #     pedido = super().get_object(queryset=queryset)
+
+    #     if self.request.user.is_superuser:
+    #         return pedido
+
+    #     if pedido.usuario == self.request.user:
+    #         return pedido
+
+    #     raise Http404()

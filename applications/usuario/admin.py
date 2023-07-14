@@ -1,16 +1,16 @@
 from django.contrib import admin
-from .models import UserExtra
+from .models import Profile
 
-class UserExtraAdmin(admin.ModelAdmin):
-    list_display = ('user', 'fono', 'direccion')
-    search_fields = ('user__username', 'fono', 'direccion')
-    list_filter = ('user__username', 'fono', 'direccion')
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'fono', 'insta')
+    search_fields = ('user__username', 'fono', 'insta')
+    list_filter = ('user__username', 'fono', 'insta')
     fieldsets = (
         ('Información del usuario', {
             'fields': ('user',)
         }),
         ('Información adicional', {
-            'fields': ('fono', 'direccion')
+            'fields': ('fono', 'insta')
         }))
 
-admin.site.register(UserExtra, UserExtraAdmin)
+admin.site.register(Profile)

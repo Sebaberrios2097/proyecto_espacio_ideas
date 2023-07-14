@@ -1,18 +1,19 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic import CreateView, DetailView, UpdateView
-from .models import UserExtra
 from django.urls import reverse_lazy
-from .forms import UserForm, UserFormEdit, UserExtraForm
+from .forms import UserForm, UserFormEdit
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.forms import UserChangeForm
+from applications.pedido.models import Pedido
 
 # Create your views here.
 
 
 class UsuarioCreateView(CreateView):
-    model = UserExtra
+    model = User
     template_name = "usuario/registrar_usuario.html"
     context_object_name = "usuario"
     form_class = UserForm
@@ -43,6 +44,6 @@ def logout_view(request):
 
 def perfil_view(request, id):
     usuario = get_object_or_404(User, id=id)
-    userextra = UserExtra.objects.get(user=usuario)
-    context = {'usuario': usuario, 'userextra': userextra}
+    pedidos = Pedido.objects.filter(usuario=usuario)
+    context = {'usuario': usuario, 'pedidos': pedidos}
     return render(request, 'usuario/perfil_usuario.html', context)

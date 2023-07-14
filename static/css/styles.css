@@ -307,5 +307,36 @@ input[type="number"]::-webkit-outer-spin-button {
   object-fit: fill;
 }
 
+.sidebar-header {
+  margin-top: 20px;
+  color: #76aada;
+  font-family: 'Staatliches', cursive;
+}
+/* .font-roboto{
+  font-size: 2rem;
+  font-family: 'Roboto', sans-serif;
+}
 
+.font-staatliches{
+  font-size: 25px;
+  font-family: 'Staatliches', cursive;
+} */
+
+.profile-sidebar {
+  background-color: #f8f8f8;
+}
+
+.btn-sidebar {
+  font-family: 'Staatliches', cursive;
+  color: #76aada;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-decoration: none;
+  font-size: 25px;
+  text-align: center;
+}
+
+.btn-sidebar:hover {
+  background: #dfdfdf;
+}
 
