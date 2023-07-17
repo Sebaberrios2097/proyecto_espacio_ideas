@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 from .forms import UserForm, UserFormEdit
 from django.contrib.auth import authenticate, login, logout
@@ -17,7 +17,20 @@ class UsuarioCreateView(CreateView):
     template_name = "usuario/registrar_usuario.html"
     context_object_name = "usuario"
     form_class = UserForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('view_profile')
+
+class UsuarioUpdateView(UpdateView):
+    model = User
+    template_name = "usuario/editar_usuario.html"
+    context_object_name = "usuario"
+    form_class = UserFormEdit
+
+    def get_success_url(self) -> str:
+        return reverse_lazy('view_profile', kwargs={'id': self.request.user.id})
+
+    def get_object(self, queryset=None):
+        return self.request.user
+    
 
 def login_view(request):
     if request.method == 'POST':

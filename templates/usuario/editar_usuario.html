@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pagina %}
+Editar usuario
+{% endblock pagina %}
+
+{% block body %}
+<div class="container-fluid mt-4 mb-4 justify-content-center d-flex">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3>Editar usuario</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group" style="padding: 20px">
+                                <div class="row mt-3">
+                                    <label for="username">Nombre de usuario:</label>
+                                    {{ form.username }}
+                                    {% if form.username.errors %}
+                                        {% for error in form.username.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="row mt-3">
+                                    <label for="email">Correo electrónico:</label>
+                                    {{ form.email }}
+                                    {% if form.email.errors %}
+                                        {% for error in form.email.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2 mt-2">
+                                <button class="mybtn-primary" type="submit">Guardar cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

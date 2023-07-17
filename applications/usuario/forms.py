@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
+from .models import Profile
 
 class UserForm(UserCreationForm):
     username = forms.CharField(label='Nombre de usuario', widget=forms.TextInput(attrs={'class':'form-control'}))
@@ -26,35 +27,12 @@ class UserForm(UserCreationForm):
         if password1 and password2 and password1 != password2:
             self.add_error('password2', 'Las contraseñas no coinciden.')
 
+
 class UserFormEdit(forms.ModelForm):
     username = forms.CharField(label='Nombre de usuario', widget=forms.TextInput(attrs={'class':'form-control'}))
     email = forms.EmailField(label='Correo electrónico', widget=forms.EmailInput(attrs={'class':'form-control'}))
 
-    def clean(self):
-        cleaned_data = super().clean()
-        # Validaciones personalizadas
-        fono = cleaned_data.get('fono')
-        direccion = cleaned_data.get('direccion')
-
-        if fono and len(fono) < 9:
-            self.add_error('fono', 'El número de teléfono debe tener al menos 9 dígitos.')
-
-        if direccion and len(direccion) < 5:
-            self.add_error('direccion', 'La dirección debe tener al menos 5 caracteres.')
 
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name')
-
-
-    def clean(self):
-        cleaned_data = super().clean()
-        # Validaciones personalizadas
-        fono = cleaned_data.get('fono')
-        direccion = cleaned_data.get('direccion')
-
-        if fono and len(fono) < 9:
-            self.add_error('fono', 'El número de teléfono debe tener al menos 9 dígitos.')
-
-        if direccion and len(direccion) < 5:
-            self.add_error('direccion', 'La dirección debe tener al menos 5 caracteres.')
